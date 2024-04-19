@@ -17,7 +17,7 @@ public class App
         int[] k = new int[1000];
 // outputs collisions to a file
         for (int i = 0; i < 1000;i++){
-    
+        ////
             Random rand = new Random();
             int n = rand.nextInt(1000000);
             k[i] = n;
