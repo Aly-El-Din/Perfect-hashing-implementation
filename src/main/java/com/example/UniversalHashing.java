@@ -3,6 +3,7 @@ package com.example;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 public class UniversalHashing {
     private final int bits_key;
     private final int bits_indices;
