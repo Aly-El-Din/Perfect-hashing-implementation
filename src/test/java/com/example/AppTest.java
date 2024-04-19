@@ -19,7 +19,7 @@ public class AppTest
         HashingN<String> h = new HashingN<>(1000);
 
         try {
-            for (int i = 0; i < 5000; i++) {
+            for (int i = 0; i < 500000; i++) {
                 h.insert(new Generator().generateString());
             }
             h.print();
