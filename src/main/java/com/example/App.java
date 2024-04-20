@@ -6,20 +6,44 @@ public class App
 {
     public static void main( String[] args )
     {
-        HashingN<String> h = new HashingN<>(10);
-        String[] strings = new String[10];
-        try {
-            for (int i = 0; i < 5; i++) {
-                strings[i] = new Generator().generateString();
-                h.insert(strings[i]);
+        HashingN2<String> h = new HashingN2<>(Integer.MAX_VALUE, 2);
+        h.insert("Amir");
+        h.insert("Ebrahim");
+        h.insert("Ali");
+        h.insert("Abdallah");
+        h.display();
+        h.delete("Amir");
+        h.display();
+       
 
-            }
-        } catch (Exception e) {
-            System.out.println("An error occurred: " + e.getMessage());
-        }
-        System.out.println(h.count==h.review());
 
-        h.print();
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // HashingN<String> h = new HashingN<>(10);
+        // String[] strings = new String[10];
+        // try {
+        //     for (int i = 0; i < 5; i++) {
+        //         strings[i] = new Generator().generateString();
+        //         h.insert(strings[i]);
+
+        //     }
+        // } catch (Exception e) {
+        //     System.out.println("An error occurred: " + e.getMessage());
+        // }
+        // System.out.println(h.count==h.review());
+
+        // h.print();
 
 
 
