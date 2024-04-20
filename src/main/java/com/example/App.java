@@ -9,7 +9,7 @@ public class App
         HashMap<Integer, Integer> map = new HashMap<>();
 
         int[] k = new int[1000];
-// outputs collisions to a file
+        // outputs collisions to a file
         for (int i = 0; i < 1000; i++) {
             Random rand = new Random();
             int n = rand.nextInt(1000000);

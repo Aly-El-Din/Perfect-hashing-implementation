@@ -5,27 +5,24 @@ import java.util.Random;
 
 
 public class UniversalHashing {
-    private final int bits_key;
+    private final int maxNumberBits;
     private final int bits_indices;
     private final ArrayList<ArrayList<Integer>> h;
 
-    public UniversalHashing(int hashTableSize) {
-        this.bits_key = (int) (Math.log(Integer.MAX_VALUE) / Math.log(2) + 1);
+    public UniversalHashing(int maxNumberAsInput ,int hashTableSize) {
+        this.maxNumberBits = (int) (((Math.log(maxNumberAsInput)) / Math.log(2))+1);
         // Size of the hash table/ number of buckets
         this.bits_indices = (int) (Math.log(hashTableSize) / Math.log(2)); // i = log2(M)
         h = new ArrayList<>();
     }
 
     public int computeIndex(int key) {
-        System.out.println("I " + bits_indices + " u " + bits_key);
+        System.out.println("I " + bits_indices + " u " + maxNumberBits);
         randomizeMatrix();
         ArrayList<Integer> E = getBinaryKey(key);
         ArrayList<Integer> index = matrixMultiplication(E);
-        System.out.println("index:");
-        for (int e : index) {
-            System.out.print(e + " ");
-        }
-        System.out.print("\nh(x)= ");
+        System.out.println("index: " + convertToDecimal(index));
+        System.out.print("h(x)= ");
         int hash = convertToDecimal(index);
         System.out.println(hash);
         return hash;
@@ -33,13 +30,13 @@ public class UniversalHashing {
 
     private void randomizeMatrix() {
         int rows = bits_indices;
-        int cols = bits_key;
+        int cols = maxNumberBits;
         for (int i = 0; i < rows; i++) {
             ArrayList<Integer> innerList = new ArrayList<>();
             for (int j = 0; j < cols; j++) {
                 int randomBinary = new Random().nextInt(2);
                 innerList.add(randomBinary);
-            }
+             }
             h.add(innerList);
         }
         System.out.println("h:");
@@ -51,9 +48,10 @@ public class UniversalHashing {
         }
     }
 
+
     private ArrayList<Integer> getBinaryKey(int key) {
         ArrayList<Integer> binary = new ArrayList<>();
-        for (int i = 0; i < bits_key; i++) {
+        for (int i = 0; i < maxNumberBits; i++) {
             binary.add(0);
         }
         int i = 0;
@@ -63,7 +61,7 @@ public class UniversalHashing {
             i++;
         }
         System.out.println("E:");
-        for (int j = 0; j < bits_key; j++) {
+        for (int j = 0; j < maxNumberBits; j++) {
             System.out.print(binary.get(j) + " ");
         }
         System.out.println();
@@ -75,7 +73,7 @@ public class UniversalHashing {
 
         for (int i = 0; i < bits_indices; i++) {
             int element = 0;
-            for (int j = 0; j < bits_key; j++) {
+            for (int j = 0; j < maxNumberBits; j++) {
                 element += h.get(i).get(j) * binaryKey.get(j);
             }
             index.add(element % 2);

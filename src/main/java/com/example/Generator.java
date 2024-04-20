@@ -10,8 +10,9 @@ class Generator {
         for (int i = 0; i < 100; i++) {
             strings[i] = Generator.generateString();
         }
+        int counter = 0;
         for (String s : strings) {
-            System.out.println(s);
+            System.out.println(++counter+"- "+s);
         }
     }
     

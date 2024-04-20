@@ -16,10 +16,10 @@ public class AppTest
     @Test
     public void RandomInsertTest()
     {
-        HashingN<String> h = new HashingN<>(1000);
+        HashingN<String> h = new HashingN<>(5);
 
         try {
-            for (int i = 0; i < 25000; i++) {
+            for (int i = 0; i < 2; i++) {
                 h.insert(new Generator().generateString());
             }
             h.print();

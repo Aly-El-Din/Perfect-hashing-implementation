@@ -11,10 +11,10 @@ public class HashingN<V> {
     int innerCollisions = 0; // number of collisions in primary table
     int outerCollisions = 0; // number of collisions in secondary tables
 
-    public HashingN(int M) {
-        this.M = M;
+    public HashingN(int primaryTableSize) {
+        this.M = primaryTableSize;
         this.N = new int[M];
-        this.h1 = new UniversalHashing(M);
+        this.h1 = new UniversalHashing(Integer.MAX_VALUE,M);
         this.table = (V[][]) new Object[M][];
         this.h2 = new UniversalHashing[M];
     }
@@ -88,7 +88,7 @@ public class HashingN<V> {
         if (table[primaryIndex] == null) {
             // Initialize secondary hash table
             int secondarySize = 2; // Initial size, adjust as needed
-            h2[primaryIndex] = new UniversalHashing(secondarySize);
+            h2[primaryIndex] = new UniversalHashing(Integer.MAX_VALUE,secondarySize);
             V[] secondaryTable = (V[]) new Object[secondarySize];
             int secondaryIndex = h2[primaryIndex].computeIndex(digest);
             secondaryTable[secondaryIndex] = var;
@@ -110,7 +110,7 @@ public class HashingN<V> {
     private void rehash(int primaryIndex) {
         int oldSize = table[primaryIndex].length;
         int newSize = oldSize * 2; // Resize to double the size
-        h2[primaryIndex] = new UniversalHashing(newSize);
+        h2[primaryIndex] = new UniversalHashing(Integer.MAX_VALUE,newSize);
         V[] secondaryTable = (V[]) new Object[newSize];
 
         for (V item : table[primaryIndex]) {
