@@ -153,7 +153,8 @@ public class HashingN<V> {
             }
             System.out.println();
         }
-        System.out.println( "Count: " + count);
+        System.out.println("Count: " + count);
+        System.out.println("Entries: "+ review());
     }
     
 
