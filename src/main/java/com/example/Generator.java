@@ -1,11 +1,14 @@
 
 package com.example;
 
+import java.nio.charset.Charset;
+import java.util.Random;
+
 class Generator {
 
     public static void main(String[] args) {
         // unique random string genrator
-      Generator Generator = new Generator();
+        Generator Generator = new Generator();
         String[] strings = new String[100];
         for (int i = 0; i < 100; i++) {
             strings[i] = Generator.generateString();
@@ -16,13 +19,19 @@ class Generator {
         }
     }
     
-    public static  String generateString() {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 10; i++) {
-            int index = (int) (chars.length() * Math.random());
-            sb.append(chars.charAt(index));
+    public  String generateString() {
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        for (int i = 0; i < targetStringLength; i++) {
+            int randomLimitedInt = leftLimit + (int)
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
         }
-        return sb.toString();
+
+        String generatedString = buffer.toString();
+        return generatedString;
     }
 }
