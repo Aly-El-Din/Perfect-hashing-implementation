@@ -13,7 +13,7 @@ public class DictionaryNSpace implements Dictionary{
     public DictionaryNSpace(int sizeOfPrimaryTable) {
         this.hash = new HashingN<>(sizeOfPrimaryTable);
     }
-    public static ArrayList<String> readWordsFromFile(String filePath) {
+    private   ArrayList<String> readWordsFromFile(String filePath) {
         ArrayList<String> wordsList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {

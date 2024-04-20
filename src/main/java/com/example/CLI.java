@@ -22,8 +22,8 @@ public class CLI {
             }
             System.out.println("Invalid choice. Please try again.\n");
             System.out.println("Please choose one of the following options:");
-            System.out.println("1. Dictionary Of O(N) Space");
-            System.out.println("2. Dictionary Of O(N²) Space");
+            System.out.println("1. Dictionary Of O(N) Space.");
+            System.out.println("2. Dictionary Of O(N²) Space.");
         }
         while (true);
         }
@@ -84,11 +84,11 @@ public class CLI {
     }
     public static void  main(String[] args) {
         String dictionaryChoice = welcome();
-        if (Objects.equals(dictionaryChoice, "1")) {
+        if (Objects.equals(dictionaryChoice, "1")) {//chose O(N) dictionary
             System.out.println("You have chosen Dictionary Of O(N) Space.\n");
             Dictionary dictionary = new DictionaryNSpace(10);
             menu(dictionary);
-        } else {
+        } else {//chose O(N²) dictionary
             System.out.println("You have chosen Dictionary Of O(N²) Space.\n");
             //initialize N^2 dictionary
         }
