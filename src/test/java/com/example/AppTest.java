@@ -1,7 +1,6 @@
 package com.example;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.junit.Assume.assumeNoException;
 
 import org.junit.Test;
@@ -18,13 +17,15 @@ public class AppTest
     public void RandomInsertTest()
     {
         HashingN<String> h = new HashingN<>(6000);
+        int testSize = 5000;
         try {
-            for (int i = 0; i < 3000; i++)
-                assertTrue(h.insert(new Generator().generateString()));
+            for (int i = 0; i < testSize; i++)
+            //assertTrue(h.insert(new Generator().generateString()));\
+            assertEquals("Inserted successfully", h.insert(new Generator().generateString()));
         } catch (Exception e) {
             assumeNoException(e);
         }
-        assertEquals(3000, h.count);
+        assertEquals(testSize, h.count);
     }
 
 
@@ -46,7 +47,7 @@ public class AppTest
                 System.out.println("Searching for " + key);
                 assertTrue(h.search(key));
 
-                }
+            }
 
         } catch (Exception e) {
             assumeNoException(e);

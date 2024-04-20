@@ -4,28 +4,27 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class UniversalHashing {
-    private final int bits_key;
+    private final int bitsOfmaxNumber;
     private final int bits_indices;
     private ArrayList<ArrayList<Integer>> h;
 
-    public UniversalHashing(int hashTableSize) {
-        this.bits_key = (int) (Math.log(Integer.MAX_VALUE) / Math.log(2) + 1);
+    public UniversalHashing(int maxNumber,int hashTableSize) {
+        this.bitsOfmaxNumber = (int) (Math.log(maxNumber) / Math.log(2) + 1);
         // Size of the hash table/ number of buckets
         this.bits_indices = (int) (Math.log(hashTableSize) / Math.log(2)); // i = log2(M)
         h = new ArrayList<>();
         randomizeMatrix();
     }
 
-    public int computeIndex(int key) {
-        ArrayList<Integer> E = getBinaryKey(key);
+    public int computeIndex(int input) {
+        ArrayList<Integer> E = getBinaryKey(input);
         ArrayList<Integer> index = matrixMultiplication(E);
-        int hash = convertToDecimal(index);
-        return hash;
+        return convertToDecimal(index);
     }
 
     private void randomizeMatrix() {
         int rows = bits_indices;
-        int cols = bits_key;
+        int cols = bitsOfmaxNumber;
         for (int i = 0; i < rows; i++) {
             ArrayList<Integer> innerList = new ArrayList<>();
             for (int j = 0; j < cols; j++) {
@@ -38,7 +37,7 @@ public class UniversalHashing {
 
     private ArrayList<Integer> getBinaryKey(int key) {
         ArrayList<Integer> binary = new ArrayList<>();
-        for (int i = 0; i < bits_key; i++) {
+        for (int i = 0; i < bitsOfmaxNumber; i++) {
             binary.add(0);
         }
         int i = 0;
@@ -54,7 +53,7 @@ public class UniversalHashing {
         ArrayList<Integer> index = new ArrayList<>();
         for (int i = 0; i < bits_indices; i++) {
             int element = 0;
-            for (int j = 0; j < bits_key; j++) {
+            for (int j = 0; j < bitsOfmaxNumber; j++) {
                 element += h.get(i).get(j) * binaryKey.get(j);
             }
             index.add(element % 2);
