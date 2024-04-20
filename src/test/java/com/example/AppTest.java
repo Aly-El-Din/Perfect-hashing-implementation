@@ -29,7 +29,7 @@ public class AppTest
     }
 
 
-    // insert multipe keys and search for them
+    // insert multiple keys and search for them
     @Test
     public void SearchTest()
     {
@@ -47,6 +47,14 @@ public class AppTest
                 System.out.println("Searching for " + key);
                 assertTrue(h.search(key));
 
+            }
+            for (int i = 0; i < 3000; i++) {
+                Generator gen = new Generator();
+                String str = gen.generateString();
+                if(gen.checkPresence(keys, str))
+                    continue;
+                System.out.println("Searching for " + keys[i]);
+                assertFalse(h.search(str));
             }
 
         } catch (Exception e) {

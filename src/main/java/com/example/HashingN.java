@@ -49,12 +49,12 @@ public class HashingN<V> {
             } else {
                 //possible collision or previous hash same element
                 if(table[primaryIndex][secondaryIndex].equals(var)){
-                    return var+" Already exists in the table";
+                    return "Already exists in the table";
                 }
                 else {
                     innerCollisions++;
                     //Collision handling
-                    System.out.println("Collision at Secondary index: " + secondaryIndex + " in primary index: " + primaryIndex + " for value: " + var );
+                    //System.out.println("Collision at Secondary index: " + secondaryIndex + " in primary index: " + primaryIndex + " for value: " + var );
                     int currIndex = 0;
                     temp = (V[]) new Object[counts[primaryIndex] + 1];
                     for (int i = 0; i < table[primaryIndex].length; i++) {
@@ -93,7 +93,7 @@ public class HashingN<V> {
             if (v == null) {
                 continue;
             }
-            System.out.println(newSize);
+            //System.out.println(newSize);
             innerIndex = h2[primaryIndex].computeIndex(hash(v, newSize));
             if ((auxiliaryTable[innerIndex] != null)) {
                 return false;
@@ -111,7 +111,10 @@ public class HashingN<V> {
     /**
      * Delete not tested
      */
-    public void delete(V var) {
+    public String delete(V var) {
+        if(!search(var)){
+            return "Element not found";
+        }
         int digest = hash(var, M);
         int primaryIndex = h1.computeIndex(digest);
         int secondaryIndex = h2[primaryIndex].computeIndex(hash(var, N[primaryIndex]));
@@ -119,6 +122,10 @@ public class HashingN<V> {
             table[primaryIndex][secondaryIndex] = null;
             counts[primaryIndex]--;
         }
+        if(search(var)){
+            return "Deletion failed";
+        }
+        return "Deleted successfully";
     }
     /*
     * Search tested and working
@@ -135,7 +142,9 @@ public class HashingN<V> {
             return false;
         }
         int secondaryIndex = h2[primaryIndex].computeIndex(hash(var,N[primaryIndex]));
-
+        if(table[primaryIndex][secondaryIndex] == null){
+            return false;
+        }
         return table[primaryIndex][secondaryIndex].equals(var);
     }
 
