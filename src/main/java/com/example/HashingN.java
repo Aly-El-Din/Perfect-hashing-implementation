@@ -49,12 +49,12 @@ public class HashingN<V> {
             } else {
                 //possible collision or previous hash same element
                 if(table[primaryIndex][secondaryIndex].equals(var)){
-                    return var+" Already exists in the table";
+                    return "Already exists in the table";
                 }
                 else {
                     innerCollisions++;
                     //Collision handling
-                    System.out.println("Collision at Secondary index: " + secondaryIndex + " in primary index: " + primaryIndex + " for value: " + var );
+                    //System.out.println("Collision at Secondary index: " + secondaryIndex + " in primary index: " + primaryIndex + " for value: " + var );
                     int currIndex = 0;
                     temp = (V[]) new Object[counts[primaryIndex] + 1];
                     for (int i = 0; i < table[primaryIndex].length; i++) {
@@ -93,7 +93,7 @@ public class HashingN<V> {
             if (v == null) {
                 continue;
             }
-            System.out.println(newSize);
+            //System.out.println(newSize);
             innerIndex = h2[primaryIndex].computeIndex(hash(v, newSize));
             if ((auxiliaryTable[innerIndex] != null)) {
                 return false;
