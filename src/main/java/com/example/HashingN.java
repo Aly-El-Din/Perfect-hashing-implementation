@@ -111,7 +111,10 @@ public class HashingN<V> {
     /**
      * Delete not tested
      */
-    public void delete(V var) {
+    public String delete(V var) {
+        if(!search(var)){
+            return "Element not found";
+        }
         int digest = hash(var, M);
         int primaryIndex = h1.computeIndex(digest);
         int secondaryIndex = h2[primaryIndex].computeIndex(hash(var, N[primaryIndex]));
@@ -119,6 +122,10 @@ public class HashingN<V> {
             table[primaryIndex][secondaryIndex] = null;
             counts[primaryIndex]--;
         }
+        if(search(var)){
+            return "Deletion failed";
+        }
+        return "Deleted successfully";
     }
     /*
     * Search tested and working
@@ -135,7 +142,9 @@ public class HashingN<V> {
             return false;
         }
         int secondaryIndex = h2[primaryIndex].computeIndex(hash(var,N[primaryIndex]));
-
+        if(table[primaryIndex][secondaryIndex] == null){
+            return false;
+        }
         return table[primaryIndex][secondaryIndex].equals(var);
     }
 

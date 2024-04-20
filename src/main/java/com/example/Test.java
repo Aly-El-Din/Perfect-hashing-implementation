@@ -23,6 +23,9 @@ public class Test {
         System.out.println(hash2.search("Ali"));
         System.out.println(hash2.search("Amir"));
         System.out.println(hash2.search("A"));
+        System.out.println(hash2.delete("Ali"));
+        System.out.println(hash2.search("Ali"));
+        System.out.println(hash2.delete("Axx"));
 
 
     }
