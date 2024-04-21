@@ -1,7 +1,6 @@
 
 package com.example;
 
-import java.nio.charset.Charset;
 import java.util.Random;
 
 class Generator {
@@ -13,8 +12,9 @@ class Generator {
         for (int i = 0; i < 100; i++) {
             strings[i] = Generator.generateString();
         }
+        int counter = 0;
         for (String s : strings) {
-            System.out.println(s);
+            System.out.println(++counter+"- "+s);
         }
     }
     
@@ -32,5 +32,14 @@ class Generator {
 
         String generatedString = buffer.toString();
         return generatedString;
+    }
+
+    public boolean checkPresence(String[] arr, String str) {
+        for (String s : arr) {
+            if (s.equals(str)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,7 +1,6 @@
 package com.example;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.junit.Assume.assumeNoException;
 
 import org.junit.Test;
@@ -18,17 +17,19 @@ public class AppTest
     public void RandomInsertTest()
     {
         HashingN<String> h = new HashingN<>(6000);
+        int testSize = 5000;
         try {
-            for (int i = 0; i < 3000; i++)
-                assertTrue(h.insert(new Generator().generateString()));
+            for (int i = 0; i < testSize; i++)
+            //assertTrue(h.insert(new Generator().generateString()));\
+            assertEquals("Inserted successfully", h.insert(new Generator().generateString()));
         } catch (Exception e) {
             assumeNoException(e);
         }
-        assertEquals(3000, h.count);
+        assertEquals(testSize, h.count);
     }
 
 
-    // insert multipe keys and search for them
+    // insert multiple keys and search for them
     @Test
     public void SearchTest()
     {
@@ -46,11 +47,34 @@ public class AppTest
                 System.out.println("Searching for " + key);
                 assertTrue(h.search(key));
 
-                }
+            }
+            for (int i = 0; i < 3000; i++) {
+                Generator gen = new Generator();
+                String str = gen.generateString();
+                if(gen.checkPresence(keys, str))
+                    continue;
+                System.out.println("Searching for " + keys[i]);
+                assertFalse(h.search(str));
+            }
 
         } catch (Exception e) {
             assumeNoException(e);
         }
     }
 
+    @Test
+    public void RandomInsertionDictionaryN2()
+    {
+
+        Dictionary dic = new DictionaryN2Space(1000);
+        int testSize = 1000;
+        try {
+            for (int i = 0; i < testSize; i++)
+
+                assertEquals("Inserted successfully", dic.insert(new Generator().generateString()));
+        } catch (Exception e) {
+            assumeNoException(e);
+        }
+
+    }
 }
