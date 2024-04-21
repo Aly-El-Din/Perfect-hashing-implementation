@@ -11,7 +11,7 @@ public class DictionaryNSpace implements Dictionary{
     public DictionaryNSpace(int sizeOfPrimaryTable) {
         this.hash = new HashingN<>(sizeOfPrimaryTable);
     }
-    private   ArrayList<String> readWordsFromFile(String filePath) {
+    public ArrayList<String> readWordsFromFile(String filePath) {
         ArrayList<String> wordsList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -51,10 +51,14 @@ public class DictionaryNSpace implements Dictionary{
     public String delete(String word) {
         return hash.delete(word);
     }
+
     public int count() {
         return hash.count;
     }
 
+    public boolean validateDeletion(String word) {
+        return hash.validateDeletion(word);
+    }
 
 
 
