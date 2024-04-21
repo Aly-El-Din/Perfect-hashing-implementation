@@ -10,7 +10,7 @@ public class UniversalHashing2 {
     private int b; // number of bits for the size of the hash table
     private int[][] hashFunctions;
 
-    public UniversalHashing2(int maxNumber, int hashTableSize) {
+    public UniversalHashing2(long maxNumber, int hashTableSize) {
         this.u = (int) (Math.log(maxNumber) / Math.log(2) + 1);
         this.M = hashTableSize;
         this.b = (int) (Math.log(hashTableSize) / Math.log(2));

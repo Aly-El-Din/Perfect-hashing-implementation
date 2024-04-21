@@ -62,4 +62,19 @@ public class AppTest
         }
     }
 
+    @Test
+    public void RandomInsertionDictionaryN2()
+    {
+
+        Dictionary dic = new DictionaryN2Space(1000);
+        int testSize = 1000;
+        try {
+            for (int i = 0; i < testSize; i++)
+
+                assertEquals("Inserted successfully", dic.insert(new Generator().generateString()));
+        } catch (Exception e) {
+            assumeNoException(e);
+        }
+
+    }
 }

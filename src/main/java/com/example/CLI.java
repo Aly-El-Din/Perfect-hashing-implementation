@@ -90,7 +90,9 @@ public class CLI {
             menu(dictionary);
         } else {//chose O(N²) dictionary
             System.out.println("You have chosen Dictionary Of O(N²) Space.\n");
-            //initialize N^2 dictionary
+            //initialize N² dictionary
+            Dictionary dictionary = new DictionaryN2Space(1000);
+            menu(dictionary);
         }
 
 
