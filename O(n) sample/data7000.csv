@@ -1,6 +1,6 @@
-Average Time Per Insertion,Space Complexity
-117,173273266
-117,175457562
-112,177368602
-175,181645968
-99,183386928
+Average Time Per Insertion,Average Time Per Search,Total Collisions,Space Complexity
+61,5,1869,33197816
+62,4,1853,38340792
+73,4,2554,41895964
+78,4,2600,44524288
+77,4,2602,47181514
