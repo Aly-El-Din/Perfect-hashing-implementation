@@ -39,12 +39,12 @@ public class CLI {
             switch (choice) {
                 case "1"://insert
                     System.out.println("Please enter the word you want to insert:");
-                    String word = sc.next();
+                    String word = sc.nextLine();
                     System.out.println(word+" "+dictionary.insert(word)+"\n");
                     break;
                 case "2"://search
                     System.out.println("Please enter the word you want to search for:");
-                    word = sc.next();
+                    word = sc.nextLine();
                     if(dictionary.search(word)){
                         System.out.println("Good:) The Word: "+word+" was found.\n");
                     }else{
@@ -53,7 +53,7 @@ public class CLI {
                     break;
                 case "3"://delete
                     System.out.println("Please enter the word you want to delete:");
-                    word = sc.next();
+                    word = sc.nextLine();
                     System.out.println(word+" "+dictionary.delete(word)+"\n");
                     break;
                 case "4"://batch insert
