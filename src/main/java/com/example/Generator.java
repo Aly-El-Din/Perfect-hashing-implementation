@@ -4,9 +4,8 @@ package com.example;
 import java.util.Random;
 
 class Generator {
-
     public static void main(String[] args) {
-        // unique random string genrator
+        // unique random string generator
         Generator Generator = new Generator();
         String[] strings = new String[100];
         for (int i = 0; i < 100; i++) {

@@ -29,7 +29,7 @@ public class AppTest
     }
 
 
-    // insert multipe keys and search for them
+    // insert multiple keys and search for them
     @Test
     public void SearchTest()
     {
@@ -48,7 +48,6 @@ public class AppTest
                 assertTrue(h.search(key));
 
             }
-
         } catch (Exception e) {
             assumeNoException(e);
         }
@@ -75,7 +74,6 @@ public class AppTest
         } catch (Exception e) {
             assumeNoException(e);
         }
-
     }
 
 }

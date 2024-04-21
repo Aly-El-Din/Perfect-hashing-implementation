@@ -1,7 +1,6 @@
 package com.example;
 
 public class HashingN<V> {
-
     private UniversalHashing h1; // hash function of primary table
     private UniversalHashing[] h2; // array of hash functions of secondary tables associated with indcies in primary table
     int count; // number of key-value pairs in table
@@ -11,6 +10,10 @@ public class HashingN<V> {
     private int innerCollisions = 0 , outerCollisions = 0; // number of collisions
     private int[] counts; // sizes of secondary tables
     private V [] temp , auxiliaryTable;
+
+
+
+    private int duplicateCount=0;
 
     public HashingN(int sizeOfPrimaryTable) {
         this.M = sizeOfPrimaryTable;
@@ -49,12 +52,13 @@ public class HashingN<V> {
             } else {
                 //possible collision or previous hash same element
                 if(table[primaryIndex][secondaryIndex].equals(var)){
-                    return var+" Already exists in the table";
+                    this.duplicateCount++;
+                    return "Already exists in the table";
                 }
                 else {
                     innerCollisions++;
                     //Collision handling
-                    System.out.println("Collision at Secondary index: " + secondaryIndex + " in primary index: " + primaryIndex + " for value: " + var );
+                    //System.out.println("Collision at Secondary index: " + secondaryIndex + " in primary index: " + primaryIndex + " for value: " + var );
                     int currIndex = 0;
                     temp = (V[]) new Object[counts[primaryIndex] + 1];
                     for (int i = 0; i < table[primaryIndex].length; i++) {
@@ -93,7 +97,7 @@ public class HashingN<V> {
             if (v == null) {
                 continue;
             }
-            System.out.println(newSize);
+            //System.out.println(newSize);
             innerIndex = h2[primaryIndex].computeIndex(hash(v, newSize));
             if ((auxiliaryTable[innerIndex] != null)) {
                 return false;
@@ -111,7 +115,10 @@ public class HashingN<V> {
     /**
      * Delete not tested
      */
-    public void delete(V var) {
+    public String delete(V var) {
+        if(!search(var)){
+            return "Element not found";
+        }
         int digest = hash(var, M);
         int primaryIndex = h1.computeIndex(digest);
         int secondaryIndex = h2[primaryIndex].computeIndex(hash(var, N[primaryIndex]));
@@ -119,6 +126,10 @@ public class HashingN<V> {
             table[primaryIndex][secondaryIndex] = null;
             counts[primaryIndex]--;
         }
+        if(search(var)){
+            return "Deletion failed";
+        }
+        return "Deleted successfully";
     }
     /*
      * Search tested and working
@@ -130,15 +141,17 @@ public class HashingN<V> {
         if (table[primaryIndex] == null) {
             return false;
         }
-        //check existence of secondary table
+        //check existance of secondary table
         if(h2[primaryIndex] == null){
             return false;
         }
         int secondaryIndex = h2[primaryIndex].computeIndex(hash(var,N[primaryIndex]));
-
-
+        if(table[primaryIndex][secondaryIndex] == null){
+            return false;
+        }
         return table[primaryIndex][secondaryIndex].equals(var);
     }
+
     public boolean validateDeletion(V var){
         int digest = hash(var, M);
         int primaryIndex = h1.computeIndex(digest);
@@ -180,6 +193,9 @@ public class HashingN<V> {
             System.out.println();
         }
         System.out.println( "Count: " + count);
+    }
+    public int getDuplicateCount() {
+        return duplicateCount;
     }
 
 
