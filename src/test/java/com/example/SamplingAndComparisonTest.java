@@ -23,7 +23,7 @@ public class SamplingAndComparisonTest {
         for (int x = inputSize; x < maxInputSize; x += 1000) {
 
             for (int i = 0; i < sampleSize; i++) {
-                HashingN2<String> hash = new HashingN2<>(Integer.MAX_VALUE,2 * inputSize);
+                HashingN<String> hash = new HashingN<>(2 * inputSize);
                 long start = System.currentTimeMillis();
 
                 for (int j = 0; j < x; j++)
@@ -33,10 +33,10 @@ public class SamplingAndComparisonTest {
 
                 totalTime = (end - start);
 
-               /*  int[] N = hash.getN();
+                int[] N = hash.getN();
                 for (int k = 0; k < 2 * inputSize; k++) {
                     space += N[k];
-                } */
+                } 
 
                 // Calculate average time per insertion
                 averageTimesPerInsertion[i] = totalTime;
