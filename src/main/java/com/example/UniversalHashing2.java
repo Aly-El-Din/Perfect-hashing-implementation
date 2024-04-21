@@ -24,7 +24,8 @@ public class UniversalHashing2 {
                 hashFunctions[i][j] = new Random().nextInt(2);
             }
         }
-    } 
+    }
+    
     
     protected int[][] bitRepresentation(int key) {
         int[][] binary = new int[u][1];
@@ -47,7 +48,7 @@ public class UniversalHashing2 {
 
     protected int computeIndex(int[][] binaryOfKey) {
         int index = 0;
-        int [] [] bitIndex = new int[b][1]; // Initialize the second dimension of the array
+        int[][] bitIndex = new int[b][1]; // Initialize the second dimension of the array
         BitwiseMatrixMultiplication m = new BitwiseMatrixMultiplication();
         m.setMatrix1(hashFunctions);
         m.setMatrix2(binaryOfKey);
@@ -58,12 +59,7 @@ public class UniversalHashing2 {
         }
         return index;
     }
-
-
-
-
     
-
     protected ArrayList<ArrayList<Integer>> getHashTable() {
         return hashTable;
     }

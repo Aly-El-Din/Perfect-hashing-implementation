@@ -14,8 +14,13 @@ public class HashingN<V> {
 
 
 
-    private int duplicateCount=0;
+    private int duplicateCount = 0;
 
+    public int[] getN() {
+        return N;
+    }
+
+    @SuppressWarnings("unchecked")
     public HashingN(int sizeOfPrimaryTable) {
         this.M = sizeOfPrimaryTable;
         this.N = new int[M];
@@ -24,7 +29,7 @@ public class HashingN<V> {
         this.h2 = new UniversalHashing[M];
         this.counts = new int[M];
         for (int i = 0; i < M; i++) {
-            this.N[i] = 2;
+            this.N[i] = 0;
             this.counts[i] = 0;
         }
     }
@@ -35,10 +40,12 @@ public class HashingN<V> {
     @SuppressWarnings("unchecked")
     public String insert(V var) {
         int digest = hash(var, M);
+
         int primaryIndex = h1.computeIndex(digest);
 
         if (table[primaryIndex] == null) {
             // Initialize secondary hash table
+            N[primaryIndex] = 2;
             h2[primaryIndex] = new UniversalHashing(Integer.MAX_VALUE,N[primaryIndex]);
             V[] secondaryTable = (V[]) new Object[N[primaryIndex]];
             int secondaryIndex = h2[primaryIndex].computeIndex(hash(var, N[primaryIndex]));
@@ -79,10 +86,11 @@ public class HashingN<V> {
         }
         counts[primaryIndex]++;
         count++;
-        if (search(var)){
+        if (search(var)) {
             return "Inserted successfully";
         }
-        return "Insertion failed";
+        else
+        throw new RuntimeException("Insertion failed");
     }
 
     @SuppressWarnings("unchecked")
@@ -127,8 +135,8 @@ public class HashingN<V> {
             table[primaryIndex][secondaryIndex] = null;
             counts[primaryIndex]--;
         }
-        if(search(var)){
-            return "Deletion failed";
+        if (search(var)) {
+            throw new RuntimeException("Deletion failed");
         }
         return "Deleted successfully";
     }
@@ -189,10 +197,17 @@ public class HashingN<V> {
         System.out.println("Count: " + count);
         System.out.println("Entries: "+ review());
     }
+
     public int getDuplicateCount() {
         return duplicateCount;
     }
     
+    public boolean validateDeletion(V var) {
+        int digest = hash(var, M);
+        int primaryIndex = h1.computeIndex(digest);
+        int secondaryIndex = h2[primaryIndex].computeIndex(hash(var, N[primaryIndex]));
+        return table[primaryIndex][secondaryIndex] == (null);
+    }
 
 
 }

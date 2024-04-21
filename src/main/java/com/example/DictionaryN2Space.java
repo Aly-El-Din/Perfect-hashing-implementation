@@ -51,7 +51,12 @@ public class DictionaryN2Space implements Dictionary{
     public String delete(String word) {
         return hash.delete(word);
     }
+
     public void display() {
         hash.display();
+    }
+    
+    public int getCount(){
+        return hash.getCount();
     }
 }

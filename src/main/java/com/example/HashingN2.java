@@ -8,6 +8,7 @@ public class HashingN2<V> extends UniversalHashing2 {
     private int hashTableSize;
     private int primarySize;
     private UniversalHashing2 newHash;
+    int count = 0;
 
     private int duplicateCount = 0;
 
@@ -57,11 +58,10 @@ public class HashingN2<V> extends UniversalHashing2 {
 
         // If the value is found after insertion or rehashing, return success message
         if (search(value)) {
-           return "Inserted successfully";
+            return "Inserted successfully";
         }
-
         // If insertion fails for any reason, return failure message
-        return "Insertion failed";
+          throw new RuntimeException("Insertion failed");
     }
 
 
@@ -76,13 +76,12 @@ public class HashingN2<V> extends UniversalHashing2 {
         if(!search(value)){
             return "Element not found";
         }
-
-            int key = value.hashCode();
+            int key = ((value.hashCode()) & Integer.MAX_VALUE) % this.hashTableSize;
             int[][] binaryOfKey = bitRepresentation(key);
             int index = this.newHash.computeIndex(binaryOfKey);
             hashTable[index] = null;
         if(search(value)){
-            return "Deletion failed";
+           throw new RuntimeException("Deletion failed");
         }
         return "Deleted successfully";
 
@@ -97,7 +96,19 @@ public class HashingN2<V> extends UniversalHashing2 {
         }
         System.out.println("Collisions: " + countCollisions);
     }
+
     public int getDuplicateCount() {
         return duplicateCount;
+    }
+    
+
+    public int getCount() {
+        int temp = 0;
+        for (int i = 0; i < hashTable.length; i++) {
+            if (hashTable[i] != null) {
+                temp++;
+            }
+        }
+        return temp;
     }
 }

@@ -4,7 +4,9 @@ public class BitwiseMatrixMultiplication {
 
     private int [][] matrix1;
     private int [][] matrix2;
-    private int [][] result;
+    private int[][] result;
+    
+
     public int[][] getMatrix1() {
         return matrix1;
     }
@@ -17,6 +19,7 @@ public class BitwiseMatrixMultiplication {
     public void setMatrix2(int[][] matrix2) {
         this.matrix2 = matrix2;
     }
+
     public int[][] getResult() {
         return result;
     }
@@ -25,7 +28,6 @@ public class BitwiseMatrixMultiplication {
         if (matrix1[0].length != matrix2.length) {
             throw new IllegalArgumentException("Incompatible matrix dimensions");
         }
-
         result = new int[matrix1.length][matrix2[0].length];
 
         for (int i = 0; i < matrix1.length; i++) {
