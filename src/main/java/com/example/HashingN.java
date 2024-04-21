@@ -12,6 +12,10 @@ public class HashingN<V> {
     private int[] counts; // sizes of secondary tables
     private V [] temp , auxiliaryTable;
 
+
+
+    private int duplicateCount=0;
+
     public HashingN(int sizeOfPrimaryTable) {
         this.M = sizeOfPrimaryTable;
         this.N = new int[M];
@@ -49,6 +53,7 @@ public class HashingN<V> {
             } else {
                 //possible collision or previous hash same element
                 if(table[primaryIndex][secondaryIndex].equals(var)){
+                    this.duplicateCount++;
                     return "Already exists in the table";
                 }
                 else {
@@ -182,6 +187,9 @@ public class HashingN<V> {
             System.out.println();
         }
         System.out.println( "Count: " + count);
+    }
+    public int getDuplicateCount() {
+        return duplicateCount;
     }
     
 

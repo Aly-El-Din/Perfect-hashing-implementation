@@ -9,6 +9,8 @@ public class HashingN2<V> extends UniversalHashing2 {
     private int primarySize;
     private UniversalHashing2 newHash;
 
+    private int duplicateCount = 0;
+
     public HashingN2(long maxNumber, int hashTableSize) {
         super(maxNumber, hashTableSize * hashTableSize);
         this.maxNumber = maxNumber;
@@ -41,6 +43,7 @@ public class HashingN2<V> extends UniversalHashing2 {
         } else {
             // Handle collision or repetition
             if (hashTable[index].equals(value)) {
+                this.duplicateCount++;
                 return "Already exists in the table";
             } else {
                 // Collision occurred
@@ -93,5 +96,8 @@ public class HashingN2<V> extends UniversalHashing2 {
             
         }
         System.out.println("Collisions: " + countCollisions);
+    }
+    public int getDuplicateCount() {
+        return duplicateCount;
     }
 }
