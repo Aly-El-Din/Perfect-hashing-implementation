@@ -1,13 +1,13 @@
 package com.example;
 
-public class HashingN2<V> extends UniversalHashing2 {
+public class HashingN2<V> extends UniversalHashing {
 
     private V[] hashTable;
     private int countCollisions = 0;
     private long maxNumber;
     private int hashTableSize;
     private int primarySize;
-    private UniversalHashing2 newHash;
+    private UniversalHashing newHash;
     int count = 0;
 
     private int duplicateCount = 0;
@@ -17,14 +17,14 @@ public class HashingN2<V> extends UniversalHashing2 {
         this.maxNumber = maxNumber;
         this.primarySize = hashTableSize;
         this.hashTableSize = hashTableSize * hashTableSize; // size of the hash table power of 2
-        this.newHash = new UniversalHashing2(this.maxNumber, this.hashTableSize);
+        this.newHash = new UniversalHashing(this.maxNumber, this.hashTableSize);
         hashTable = (V[]) new Object[this.hashTableSize];
     }
 
     // Method to rehash the hash table
     private void rehash() {
         V[] oldHashTable = hashTable.clone(); // Create a clone of the old hash table
-        this.newHash = new UniversalHashing2(this.maxNumber, this.hashTableSize); // Create a new hashing instance
+        this.newHash = new UniversalHashing(this.maxNumber, this.hashTableSize); // Create a new hashing instance
         hashTable = (V[]) new Object[this.hashTableSize]; // Initialize a new hash table array
         // Iterate over the entries in the old hash table
         for (V value : oldHashTable) {
@@ -37,9 +37,7 @@ public class HashingN2<V> extends UniversalHashing2 {
 
     public String insert(V value) {
         int key = ((value.hashCode()) & Integer.MAX_VALUE) % this.hashTableSize;
-        int[][] binaryOfKey = bitRepresentation(key);
-        int index = this.newHash.computeIndex(binaryOfKey);
-
+        int index = this.newHash.computeIndex(key);
         if (hashTable[index] == null) {
             // Insert if the slot is empty
             hashTable[index] = value;
@@ -70,8 +68,7 @@ public class HashingN2<V> extends UniversalHashing2 {
 
     public boolean search(V value) {
         int key = ((value.hashCode()) & Integer.MAX_VALUE) % this.hashTableSize;
-        int[][] binaryOfKey = bitRepresentation(key);
-        int index = this.newHash.computeIndex(binaryOfKey);
+        int index = this.newHash.computeIndex(key);
         return hashTable[index] != null && hashTable[index].equals(value);
     }
 
@@ -80,8 +77,7 @@ public class HashingN2<V> extends UniversalHashing2 {
             return "Element not found";
         }
             int key = ((value.hashCode()) & Integer.MAX_VALUE) % this.hashTableSize;
-            int[][] binaryOfKey = bitRepresentation(key);
-            int index = this.newHash.computeIndex(binaryOfKey);
+            int index = this.newHash.computeIndex(key);
             hashTable[index] = null;
         if(search(value)){
            throw new RuntimeException("Deletion failed");
