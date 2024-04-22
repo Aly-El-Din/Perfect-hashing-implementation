@@ -7,7 +7,7 @@ public class UniversalHashing {
     private final int bits_indices;
     private int[][] h;
 
-    public UniversalHashing(int maxNumber, int hashTableSize) {
+    public UniversalHashing(long maxNumber, int hashTableSize) {
         this.bitsOfMaxNumber = (int) (Math.log(maxNumber) / Math.log(2) + 1);
         // Size of the hash table/ number of buckets
         this.bits_indices = (int) (Math.log(hashTableSize) / Math.log(2)); // i = log2(M)
