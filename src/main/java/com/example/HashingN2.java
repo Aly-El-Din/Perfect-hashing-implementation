@@ -1,7 +1,7 @@
 package com.example;
 
-public class HashingN2<V> extends UniversalHashing {
-
+public class HashingN2<V> {
+    private Boolean isString;
     private V[] hashTable;
     private int countCollisions = 0;
     private long maxNumber;
@@ -9,22 +9,21 @@ public class HashingN2<V> extends UniversalHashing {
     private int primarySize;
     private UniversalHashing newHash;
     int count = 0;
-
     private int duplicateCount = 0;
 
-    public HashingN2(long maxNumber, int hashTableSize) {
-        super(maxNumber, hashTableSize * hashTableSize);
-        this.maxNumber = maxNumber;
-        this.primarySize = hashTableSize;
+    public HashingN2(boolean isString,long maxNumber, int hashTableSize) {
+        this.isString = isString;
+        this.maxNumber = maxNumber; // Maximum number of elements
+        this.primarySize = hashTableSize; // Size of the primary table
         this.hashTableSize = hashTableSize * hashTableSize; // size of the hash table power of 2
-        this.newHash = new UniversalHashing(this.maxNumber, this.hashTableSize);
+        this.newHash = new UniversalHashing(isString,this.maxNumber, this.hashTableSize);
         hashTable = (V[]) new Object[this.hashTableSize];
     }
 
     // Method to rehash the hash table
     private void rehash() {
         V[] oldHashTable = hashTable.clone(); // Create a clone of the old hash table
-        this.newHash = new UniversalHashing(this.maxNumber, this.hashTableSize); // Create a new hashing instance
+        this.newHash = new UniversalHashing(isString ,this.maxNumber, this.hashTableSize); // Create a new hashing instance
         hashTable = (V[]) new Object[this.hashTableSize]; // Initialize a new hash table array
         // Iterate over the entries in the old hash table
         for (V value : oldHashTable) {
@@ -36,8 +35,13 @@ public class HashingN2<V> extends UniversalHashing {
     }
 
     public String insert(V value) {
-        int key = ((value.hashCode()) & Integer.MAX_VALUE) % this.hashTableSize;
-        int index = this.newHash.computeIndex(key);
+        int index;
+        if (this.isString){
+            index = this.newHash.computeIndexString(value.toString());    
+        }
+        else{
+        index = this.newHash.computeIndex(Math.abs((int)value)); 
+        }
         if (hashTable[index] == null) {
             // Insert if the slot is empty
             hashTable[index] = value;
@@ -67,8 +71,13 @@ public class HashingN2<V> extends UniversalHashing {
 
 
     public boolean search(V value) {
-        int key = ((value.hashCode()) & Integer.MAX_VALUE) % this.hashTableSize;
-        int index = this.newHash.computeIndex(key);
+        int index;
+        if (this.isString){
+            index = this.newHash.computeIndexString(value.toString());    
+        }
+        else{
+        index = this.newHash.computeIndex(Math.abs((int)value)); 
+        }
         return hashTable[index] != null && hashTable[index].equals(value);
     }
 
@@ -76,8 +85,13 @@ public class HashingN2<V> extends UniversalHashing {
         if(!search(value)){
             return "Element not found";
         }
-            int key = ((value.hashCode()) & Integer.MAX_VALUE) % this.hashTableSize;
-            int index = this.newHash.computeIndex(key);
+        int index;
+        if (this.isString){
+            index = this.newHash.computeIndexString(value.toString());    
+        }
+        else{
+        index = this.newHash.computeIndex(Math.abs((int)value)); 
+        }
             hashTable[index] = null;
         if(search(value)){
            throw new RuntimeException("Deletion failed");
@@ -96,10 +110,15 @@ public class HashingN2<V> extends UniversalHashing {
         }
         // Print the total number of collisions
         System.out.println("Collisions: " + countCollisions);
+        System.out.println("Duplicates: " + duplicateCount);
     }
 
     public int getDuplicateCount() {
         return duplicateCount;
+    }
+
+    public int getCollisionCount() {
+        return countCollisions;
     }
     
 
