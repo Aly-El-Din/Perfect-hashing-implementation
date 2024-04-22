@@ -11,13 +11,7 @@ public class UniversalHashing2 {
     private int b; // Number of bits for the size of the hash table
     private int[][] hashFunctions; // Array of hash functions
 
-<<<<<<< HEAD
-    // Constructor
-    public UniversalHashing2(int maxNumber, int hashTableSize) {
-        // Calculate the number of bits for the maximum number
-=======
     public UniversalHashing2(long maxNumber, int hashTableSize) {
->>>>>>> f87b7124d92b7e83c0521b7f6becaf0c49b67d2a
         this.u = (int) (Math.log(maxNumber) / Math.log(2) + 1);
         this.M = hashTableSize; // Set the size of the hash table
         // Calculate the number of bits for the size of the hash table
@@ -65,13 +59,7 @@ public class UniversalHashing2 {
     // Method to compute the index in the hash table using bitwise matrix multiplication
     protected int computeIndex(int[][] binaryOfKey) {
         int index = 0;
-<<<<<<< HEAD
-        // Initialize the array to store the result of matrix multiplication
-        int[][] bitIndex = new int[b][1];
-        // Create an instance of the BitwiseMatrixMultiplication class
-=======
         int[][] bitIndex = new int[b][1]; // Initialize the second dimension of the array
->>>>>>> f87b7124d92b7e83c0521b7f6becaf0c49b67d2a
         BitwiseMatrixMultiplication m = new BitwiseMatrixMultiplication();
         // Set the matrices for multiplication
         m.setMatrix1(hashFunctions);
@@ -86,12 +74,7 @@ public class UniversalHashing2 {
         }
         return index;
     }
-<<<<<<< HEAD
-
-    // Getter and setter methods for instance variables
-=======
     
->>>>>>> f87b7124d92b7e83c0521b7f6becaf0c49b67d2a
     protected ArrayList<ArrayList<Integer>> getHashTable() {
         return hashTable;
     }
