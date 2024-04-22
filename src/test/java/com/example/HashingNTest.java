@@ -17,7 +17,7 @@ public class HashingNTest
     @Test
     public void InsertStringTest()
     {
-        HashingN<String> h = new HashingN<>(6000,true);
+        HashingN<String> h = new HashingN<>(6000);
         int testSize = 5000;
         try {
             for (int i = 0; i < testSize; i++)
@@ -34,7 +34,7 @@ public class HashingNTest
     @Test
     public void SearchStringTest()
     {
-        HashingN<String> h = new HashingN<>(6000,true);
+        HashingN<String> h = new HashingN<>(6000);
         String[] keys = new String[3000];
         try {
             for (int i = 0; i < 3000; i++) {
@@ -66,7 +66,7 @@ public class HashingNTest
 
     @Test
     public void DeleteStringTest() {
-        HashingN<String> h = new HashingN<>(6000,true);
+        HashingN<String> h = new HashingN<>(6000);
         String[] keys = new String[3000];
         try {
             for (int i = 0; i < 3000; i++) {
@@ -92,7 +92,7 @@ public class HashingNTest
     @Test
     public void InsertLongTest()
     {
-        HashingN<Long> h = new HashingN<>(6000,false);
+        HashingN<Long> h = new HashingN<>(6000);
         int testSize = 5000;
         try {
             for (int i = 0; i < testSize; i++)
@@ -106,9 +106,9 @@ public class HashingNTest
 
     // insert multiple keys and search for them
     @Test
-    public void SearchTest()
+    public void SearchLongTest()
     {
-        HashingN<Long> h = new HashingN<>(6000,false);
+        HashingN<Long> h = new HashingN<>(6000);
         Long[] keys = new Long[3000];
         try {
             for (int i = 0; i < 3000; i++) {
@@ -132,7 +132,7 @@ public class HashingNTest
 
     @Test
     public void DeleteLongTest() {
-        HashingN<Long> h = new HashingN<>(6000,false);
+        HashingN<Long> h = new HashingN<>(6000);
         Long[] keys = new Long[3000];
         try {
             for (int i = 0; i < 3000; i++) {
