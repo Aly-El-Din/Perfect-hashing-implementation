@@ -5,13 +5,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class DictionaryNSpace implements Dictionary{
-    private HashingN<String> hash;
+public class DictionaryN2Space implements Dictionary{
+    private HashingN2<String> hash;
 
-    public DictionaryNSpace(int sizeOfPrimaryTable) {
-        this.hash = new HashingN<>(sizeOfPrimaryTable);
+    public DictionaryN2Space(int sizeOfTable) {
+        this.hash = new HashingN2<>(Long.MAX_VALUE,sizeOfTable);
     }
-    public ArrayList<String> readWordsFromFile(String filePath) {
+    private ArrayList<String> readWordsFromFile(String filePath) {
         ArrayList<String> wordsList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -52,14 +52,11 @@ public class DictionaryNSpace implements Dictionary{
         return hash.delete(word);
     }
 
-    public int count() {
-        return hash.count;
+    public void display() {
+        hash.display();
     }
-
-    public boolean validateDeletion(String word) {
-        return hash.validateDeletion(word);
+    
+    public int getCount(){
+        return hash.getCount();
     }
-
-
-
 }

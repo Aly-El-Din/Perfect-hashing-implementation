@@ -3,18 +3,19 @@ package com.example;
 import static org.junit.Assert.*;
 import static org.junit.Assume.assumeNoException;
 
+import java.util.Random;
+
 import org.junit.Test;
 
-import java.util.Random;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class HashingNTest 
 {
     // repeat the insertion test
     @Test
-    public void RandomInsertTest()
+    public void InsertTest()
     {
         HashingN<String> h = new HashingN<>(6000);
         int testSize = 5000;
@@ -62,4 +63,45 @@ public class AppTest
         }
     }
 
+
+    @Test
+    public void DeleteTest() {
+        HashingN<String> h = new HashingN<>(6000);
+        String[] keys = new String[3000];
+        try {
+            for (int i = 0; i < 3000; i++) {
+                keys[i] = new Generator().generateString();
+                h.insert(keys[i]);
+            }
+            System.out.println(h.count);
+
+            Random random = new Random();
+            // delete 500 elements
+            for (int i = 0; i < 500; i++) {
+                int randomIndex = random.nextInt(3000);
+                h.delete(keys[randomIndex]);
+                assertTrue(h.validateDeletion(keys[randomIndex]));// Check the deleted element if it does not exist,
+                                                                  // pass
+            }
+
+        } catch (Exception e) {
+            assumeNoException(e);
+        }
+
+    }
+   /*  @Test
+    public void RandomInsertionDictionaryN2()
+    {
+
+        Dictionary dic = new DictionaryN2Space(1000);
+        int testSize = 1000;
+        try {
+            for (int i = 0; i < testSize; i++)
+
+                assertEquals("Inserted successfully", dic.insert(new Generator().generateString()));
+        } catch (Exception e) {
+            assumeNoException(e);
+        }
+
+    } */
 }

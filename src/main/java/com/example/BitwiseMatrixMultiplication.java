@@ -5,9 +5,15 @@ public class BitwiseMatrixMultiplication {
     // Define instance variables to store the matrices
     private int [][] matrix1;
     private int [][] matrix2;
+<<<<<<< HEAD
     private int [][] result;
 
     // Getter and setter methods for matrix1
+=======
+    private int[][] result;
+    
+
+>>>>>>> f87b7124d92b7e83c0521b7f6becaf0c49b67d2a
     public int[][] getMatrix1() {
         return matrix1;
     }
@@ -25,7 +31,10 @@ public class BitwiseMatrixMultiplication {
         this.matrix2 = matrix2;
     }
 
+<<<<<<< HEAD
     // Getter method for the result matrix
+=======
+>>>>>>> f87b7124d92b7e83c0521b7f6becaf0c49b67d2a
     public int[][] getResult() {
         return result;
     }
@@ -36,8 +45,11 @@ public class BitwiseMatrixMultiplication {
         if (matrix1[0].length != matrix2.length) {
             throw new IllegalArgumentException("Incompatible matrix dimensions");
         }
+<<<<<<< HEAD
 
         // Initialize the result matrix with appropriate dimensions
+=======
+>>>>>>> f87b7124d92b7e83c0521b7f6becaf0c49b67d2a
         result = new int[matrix1.length][matrix2[0].length];
 
         // Perform matrix multiplication using bitwise AND and XOR operations
