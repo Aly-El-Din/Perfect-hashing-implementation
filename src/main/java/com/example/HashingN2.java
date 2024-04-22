@@ -11,9 +11,14 @@ public class HashingN2<V> {
     int count = 0;
     private int duplicateCount = 0;
 
+
+
+    private int expectedNumberOfElements = 0;
+
     public HashingN2(boolean isString,long maxNumber, int hashTableSize) {
         this.isString = isString;
         this.maxNumber = maxNumber; // Maximum number of elements
+        this.expectedNumberOfElements = hashTableSize; // Expected number of elements
         this.primarySize = hashTableSize; // Size of the primary table
         this.hashTableSize = hashTableSize * hashTableSize; // size of the hash table power of 2
         this.newHash = new UniversalHashing(isString,this.maxNumber, this.hashTableSize);
@@ -21,8 +26,10 @@ public class HashingN2<V> {
     }
 
     // Method to rehash the hash table
-    private void rehash() {
+    public void rehash(int newSize) {
         V[] oldHashTable = hashTable.clone(); // Create a clone of the old hash table
+        this.expectedNumberOfElements = newSize; // Update the expected number of elements
+        this.hashTableSize = newSize * newSize; // Update the hash table size
         this.newHash = new UniversalHashing(isString ,this.maxNumber, this.hashTableSize); // Create a new hashing instance
         hashTable = (V[]) new Object[this.hashTableSize]; // Initialize a new hash table array
         // Iterate over the entries in the old hash table
@@ -55,7 +62,7 @@ public class HashingN2<V> {
                 // Collision occurred
                 System.out.println("Collision at index: " + index + " Value: " + hashTable[index] + " New Value: " + value);
                 this.countCollisions++;
-                rehash(); // Rehashing to resolve collision
+                rehash(this.expectedNumberOfElements+1); // Rehashing to resolve collision
                 insert(value); // Attempt to insert again after rehashing
                 // Since the insertion is retried after rehashing, no need to return here
             }
@@ -130,5 +137,8 @@ public class HashingN2<V> {
             }
         }
         return temp;
+    }
+    public int getExpectedNumberOfElements() {
+        return expectedNumberOfElements;
     }
 }

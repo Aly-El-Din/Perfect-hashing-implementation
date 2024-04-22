@@ -27,7 +27,7 @@ public class CLI {
     public static void menu(Dictionary dictionary) {
 
         do {
-            System.out.println("Please choose one of the following options:");
+            System.out.println("\u001B[36mPlease choose one of the following options:\u001B[0m");
             System.out.println("1. Insert a word");
             System.out.println("2. Search for a word");
             System.out.println("3. Delete a word");
@@ -82,12 +82,12 @@ public class CLI {
         String dictionaryChoice = welcome();
         if (Objects.equals(dictionaryChoice, "1")) {//chose O(N) dictionary
             System.out.println("You have chosen Dictionary Of O(N) Space.\n");
-            Dictionary dictionary = new DictionaryNSpace(10);
+            Dictionary dictionary = new DictionaryNSpace(16);
             menu(dictionary);
         } else {//chose O(N²) dictionary
             System.out.println("You have chosen Dictionary Of O(N²) Space.\n");
             //initialize N² dictionary
-            Dictionary dictionary = new DictionaryN2Space(1000);
+            Dictionary dictionary = new DictionaryN2Space(16);
             menu(dictionary);
         }
 
