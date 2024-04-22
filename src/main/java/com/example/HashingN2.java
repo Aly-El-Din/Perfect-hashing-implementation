@@ -79,7 +79,7 @@ public class HashingN2<V> extends UniversalHashing2 {
         if(!search(value)){
             return "Element not found";
         }
-            int key = ((value.hashCode()) & Integer.MAX_VALUE) % this.hashTableSize;
+        int key = ((value.hashCode()) & Integer.MAX_VALUE) % this.hashTableSize;
             int[][] binaryOfKey = bitRepresentation(key);
             int index = this.newHash.computeIndex(binaryOfKey);
             hashTable[index] = null;

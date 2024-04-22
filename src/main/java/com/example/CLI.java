@@ -11,6 +11,7 @@ public class CLI {
         System.out.println("1. Dictionary Of O(N) Space");
         System.out.println("2. Dictionary Of O(N²) Space");
         Scanner sc = new Scanner(System.in);
+        
         do {
             String choice = sc.nextLine();
             if ((choice.equals("1")) || (choice.equals("2"))) {
