@@ -9,7 +9,7 @@ public class DictionaryN2Space implements Dictionary{
     private HashingN2<String> hash;
 
     public DictionaryN2Space(int sizeOfTable) {
-        this.hash = new HashingN2<>(Long.MAX_VALUE,sizeOfTable);
+        this.hash = new HashingN2<>(true,Long.MAX_VALUE,sizeOfTable);
     }
     private ArrayList<String> readWordsFromFile(String filePath) {
         ArrayList<String> wordsList = new ArrayList<>();
@@ -30,15 +30,36 @@ public class DictionaryN2Space implements Dictionary{
 
     public void batchInsert(String filePath) {
         ArrayList<String> words = readWordsFromFile(filePath);
+        hash.rehash(words.size()+hash.getExpectedNumberOfElements());
+        int totalInsertedElements = 0;
+        int totalDuplicateElements = 0;
         for (String word : words) {
-            System.out.println(word+" "+hash.insert(word));
+            String message = hash.insert(word);
+            if(message.equals("Inserted successfully")){
+                totalInsertedElements++;
+            }
+            else if(message.equals("Already exists in the table")){
+                totalDuplicateElements++;
+            }
         }
+        System.out.println("\u001B[32m\nTotal Inserted Elements: " + totalInsertedElements + "\u001B[0m");
+        System.out.println("\u001B[31mTotal Duplicate Elements: " + totalDuplicateElements + "\u001B[0m");
     }
     public void batchDelete(String filePath) {
         ArrayList<String> words = readWordsFromFile(filePath);
+        int totalDeletedElements = 0;
+        int totalNotFoundElements = 0;
         for (String word : words) {
-            System.out.println(word+" "+hash.delete(word));
+            String message = hash.delete(word);
+            if(message.equals("Deleted successfully")){
+                totalDeletedElements++;
+            }
+            else if(message.equals("Element not found")){
+                totalNotFoundElements++;
+            }
         }
+        System.out.println("\u001B[32m\nTotal Deleted Elements: " + totalDeletedElements + "\u001B[0m");
+        System.out.println("\u001B[31mTotal Not Found Elements: " + totalNotFoundElements + "\u001B[0m");
     }
 
     public String insert(String word) {

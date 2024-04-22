@@ -2,8 +2,8 @@ package com.example;
 
 public class HashingN<V> {
 
-    private UniversalHashing h1; // hash function of primary table
-    private UniversalHashing[] h2; // array of hash functions of secondary tables associated with indcies in primary table
+    private UniversalHashing2 h1; // hash function of primary table
+    private UniversalHashing2[] h2; // array of hash functions of secondary tables associated with indcies in primary table
     int count; // number of key-value pairs in table
     private int M; // size of primary table (number of keys in primary table)
     private int[] N; // sizes of secondary tables
@@ -24,9 +24,9 @@ public class HashingN<V> {
     public HashingN(int sizeOfPrimaryTable) {
         this.M = sizeOfPrimaryTable;
         this.N = new int[M];
-        this.h1 = new UniversalHashing(Integer.MAX_VALUE,M);
+        this.h1 = new UniversalHashing2(Integer.MAX_VALUE,M);
         this.table = (V[][]) new Object[M][];
-        this.h2 = new UniversalHashing[M];
+        this.h2 = new UniversalHashing2[M];
         this.counts = new int[M];
         for (int i = 0; i < M; i++) {
             this.N[i] = 0;
@@ -46,7 +46,7 @@ public class HashingN<V> {
         if (table[primaryIndex] == null) {
             // Initialize secondary hash table
             N[primaryIndex] = 2;
-            h2[primaryIndex] = new UniversalHashing(Integer.MAX_VALUE,N[primaryIndex]);
+            h2[primaryIndex] = new UniversalHashing2(Integer.MAX_VALUE,N[primaryIndex]);
             V[] secondaryTable = (V[]) new Object[N[primaryIndex]];
             int secondaryIndex = h2[primaryIndex].computeIndex(hash(var, N[primaryIndex]));
             secondaryTable[secondaryIndex] = var;
@@ -99,7 +99,7 @@ public class HashingN<V> {
         int oldSize = N[primaryIndex];
         int newSize = oldSize * 2;
         N[primaryIndex] = newSize;
-        h2[primaryIndex] = new UniversalHashing(Integer.MAX_VALUE,newSize);
+        h2[primaryIndex] = new UniversalHashing2(Integer.MAX_VALUE,newSize);
         auxiliaryTable = (V[]) new Object[newSize];
 
         for (V v : temp) {

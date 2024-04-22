@@ -42,4 +42,8 @@ class Generator {
         }
         return false;
     }
+    public Long  generateLong() {
+        Random random = new Random();
+        return random.nextLong();
+    }
 }
