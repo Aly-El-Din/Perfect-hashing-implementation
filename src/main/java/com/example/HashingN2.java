@@ -76,14 +76,8 @@ public class HashingN2<V> extends UniversalHashing {
         if(!search(value)){
             return "Element not found";
         }
-<<<<<<< HEAD
-        int key = ((value.hashCode()) & Integer.MAX_VALUE) % this.hashTableSize;
-            int[][] binaryOfKey = bitRepresentation(key);
-            int index = this.newHash.computeIndex(binaryOfKey);
-=======
             int key = ((value.hashCode()) & Integer.MAX_VALUE) % this.hashTableSize;
             int index = this.newHash.computeIndex(key);
->>>>>>> 4f955be1f85a0188bddf44fa82ee2f30fd4a7b3c
             hashTable[index] = null;
         if(search(value)){
            throw new RuntimeException("Deletion failed");
@@ -106,6 +100,9 @@ public class HashingN2<V> extends UniversalHashing {
 
     public int getDuplicateCount() {
         return duplicateCount;
+    }
+    public int getInnerCollisions() {
+        return countCollisions;
     }
     
 
