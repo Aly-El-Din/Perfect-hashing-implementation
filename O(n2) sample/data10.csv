@@ -1,0 +1,6 @@
+Average Time Per Insertion,Average Time Per Search,Total Collisions,Space Complexity
+1190399,192201,0,400
+420100,186300,0,400
+840900,172700,1,441
+270901,131300,0,400
+426600,41899,1,441
