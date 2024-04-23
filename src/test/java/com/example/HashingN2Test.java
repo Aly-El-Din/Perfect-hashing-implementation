@@ -3,12 +3,9 @@ package com.example;
 import static org.junit.Assert.*;
 import static org.junit.Assume.assumeNoException;
 
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
 import java.util.Random;
 
->>>>>>> 69c02063be1f5199b044d7dee227d76b483580b5
 import org.junit.Test;
 
 public class HashingN2Test {

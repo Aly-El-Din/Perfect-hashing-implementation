@@ -123,12 +123,8 @@ public class HashingN2<V> {
     public int getDuplicateCount() {
         return duplicateCount;
     }
-<<<<<<< HEAD
-    public int getInnerCollisions() {
-=======
 
     public int getCollisionCount() {
->>>>>>> 69c02063be1f5199b044d7dee227d76b483580b5
         return countCollisions;
     }
     
@@ -142,7 +138,12 @@ public class HashingN2<V> {
         }
         return temp;
     }
+
     public int getExpectedNumberOfElements() {
         return expectedNumberOfElements;
+    }
+    
+    public int getHashTableSize() {
+        return hashTableSize;
     }
 }

@@ -7,26 +7,26 @@ import java.util.Random;
 
 public class SamplingAndComparisonTest {
 
-    // samlping data about space and time complexity of HashingN
+    // samlping data about space and time complexity of HashingN2
     @Test
     public void complexityAnalysisTest() {
         int space = 0; // space complexity
         long totalInsertionTime = 0; // total time taken to insert entries
         long totalSearchTime = 0; // total time taken to search entries
         int sampleSize = 5; // number of samples to be taken of a given input size
-        int inputSize = 10; // random input size (size of entries to be inserted)
+        int inputSize = 10000; // random input size (size of entries to be inserted)
         int c = new Random().nextInt(9) + 1; // random constant c assumed to be between 1 - 9
-        int maxInputSize = 101; // maximum input size
+        int maxInputSize = 10001; // maximum input size
         int[] spaceComplexities = new int[sampleSize];
         long[] averageTimesPerInsertion = new long[sampleSize];
         long[] averageTimesPerSearch = new long[sampleSize];
         ArrayList<String> values = new ArrayList<>();
         int[] totalCollisions = new int[sampleSize];
 
-        for (int x = inputSize; x < maxInputSize; x += 10) {
+        for (int x = inputSize; x < maxInputSize; x += 10000) {
 
             for (int i = 0; i < sampleSize; i++) {
-                HashingN<String> hash = new HashingN<>(2 * inputSize);
+                HashingN2<String> hash = new HashingN2<>(true,Integer.MAX_VALUE ,2 * inputSize);
                 long startInsert = System.nanoTime();
 
                 Generator generator = new Generator();
@@ -59,10 +59,10 @@ public class SamplingAndComparisonTest {
 
                 // Calculate space complexity
                 
-                spaceComplexities[i] = x*x;
+                spaceComplexities[i] = hash.getHashTableSize();
 
                 // Calculate total collisions
-                totalCollisions[i] = hash.getInnerCollisions() ;
+                totalCollisions[i] = hash.getCollisionCount() ;
             }
 
             // Write data to CSV file
