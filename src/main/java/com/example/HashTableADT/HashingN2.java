@@ -141,7 +141,12 @@ public class HashingN2<V> {
         }
         return temp;
     }
+
     public int getExpectedNumberOfElements() {
         return expectedNumberOfElements;
+    }
+    
+    public int getHashTableSize() {
+        return hashTableSize;
     }
 }
