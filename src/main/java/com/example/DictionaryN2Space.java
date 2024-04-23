@@ -80,4 +80,12 @@ public class DictionaryN2Space implements Dictionary{
     public int getCount(){
         return hash.getCount();
     }
+
+    public int getNumberofCuurrentElementsinTable() {
+        return hash.getCount();
+    }
+
+    public int getCollisions() {
+        return hash.getCollisionCount();
+    }
 }

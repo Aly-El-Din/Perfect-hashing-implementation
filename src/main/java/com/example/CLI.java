@@ -41,6 +41,8 @@ public class CLI {
                     System.out.println("Please enter the word you want to insert:");
                     String word = sc.nextLine();
                     System.out.println(word+" "+dictionary.insert(word)+"\n");
+                    System.out.println("Number of collisions till now: "+dictionary.getCollisions());
+                    System.out.println("Number of Current Elements in Table: "+dictionary.getNumberofCuurrentElementsinTable()+"\n");
                     break;
                 case "2"://search
                     System.out.println("Please enter the word you want to search for:");
@@ -55,18 +57,22 @@ public class CLI {
                     System.out.println("Please enter the word you want to delete:");
                     word = sc.nextLine();
                     System.out.println(word+" "+dictionary.delete(word)+"\n");
+                    System.out.println("Number of Current Elements in Table: "+dictionary.getNumberofCuurrentElementsinTable()+"\n");
                     break;
                 case "4"://batch insert
                     System.out.println("Please provide the path for the file containing words to insert.");
                     String filePath = sc.nextLine();
                     dictionary.batchInsert(filePath);
                     System.out.println("\nBatch Insertion Done Successfully.\n");
+                    System.out.println("Number of collisions till now: "+dictionary.getCollisions());
+                    System.out.println("Number of Current Elements in Table: "+dictionary.getNumberofCuurrentElementsinTable()+"\n");
                     break;
                 case "5"://batch delete
                     System.out.println("Please provide the path for the file containing words to delete.");
                     filePath = sc.nextLine();
                     dictionary.batchDelete(filePath);
                     System.out.println("\nBatch Deletion Done Successfully.\n");
+                    System.out.println("Number of Current Elements in Table: "+dictionary.getNumberofCuurrentElementsinTable()+"\n");
                     break;
                 case "6"://exit
                     System.exit(0);

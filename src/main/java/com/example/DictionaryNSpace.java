@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class DictionaryNSpace implements Dictionary{
     private HashingN<String> hash;
 
+
+
     public DictionaryNSpace(int sizeOfPrimaryTable) {
         this.hash = new HashingN<>(sizeOfPrimaryTable);
     }
@@ -30,15 +32,35 @@ public class DictionaryNSpace implements Dictionary{
 
     public void batchInsert(String filePath) {
         ArrayList<String> words = readWordsFromFile(filePath);
+        int totalInsertedElements = 0;
+        int totalDuplicateElements = 0;
         for (String word : words) {
-            System.out.println(word+" "+hash.insert(word));
+            String message = hash.insert(word);
+            if(message.equals("Inserted successfully")){
+                totalInsertedElements++;
+            }
+            else if(message.equals("Already exists in the table")){
+                totalDuplicateElements++;
+            }
         }
+        System.out.println("\u001B[32m\nTotal Inserted Elements: " + totalInsertedElements + "\u001B[0m");
+        System.out.println("\u001B[31mTotal Duplicate Elements: " + totalDuplicateElements + "\u001B[0m");
     }
     public void batchDelete(String filePath) {
         ArrayList<String> words = readWordsFromFile(filePath);
+        int totalDeletedElements = 0;
+        int totalNotFoundElements = 0;
         for (String word : words) {
-            System.out.println(word+" "+hash.delete(word));
+            String message = hash.delete(word);
+            if(message.equals("Deleted successfully")){
+                totalDeletedElements++;
+            }
+            else if(message.equals("Element not found")){
+                totalNotFoundElements++;
+            }
         }
+        System.out.println("\u001B[32m\nTotal Deleted Elements: " + totalDeletedElements + "\u001B[0m");
+        System.out.println("\u001B[31mTotal Not Found Elements: " + totalNotFoundElements + "\u001B[0m");
     }
 
     public String insert(String word) {
@@ -52,12 +74,20 @@ public class DictionaryNSpace implements Dictionary{
         return hash.delete(word);
     }
 
-    public int count() {
+    public int getNumberofCuurrentElementsinTable() {
         return hash.count;
+    }
+
+    public int getCollisions() {
+        return hash.getInnerCollisions();
     }
 
     public boolean validateDeletion(String word) {
         return hash.validateDeletion(word);
+    }
+
+    public void display() {
+        hash.print();
     }
 
 

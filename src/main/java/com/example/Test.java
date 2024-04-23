@@ -59,6 +59,13 @@ public class Test {
         System.out.println(hash.insert("Hassan"));
         System.out.println(hash.insert("jemssjsdh"));
         hash.display();
+        DictionaryNSpace hash2 = new DictionaryNSpace(2);
+        System.out.println(hash2.insert("Ebrahim"));
+        System.out.println(hash2.insert("Amir"));
+        System.out.println(hash2.insert("Hassan"));
+        System.out.println(hash2.insert("jemssjsdh"));
+        hash2.display();
+
 
 
 

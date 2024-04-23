@@ -118,6 +118,7 @@ public class HashingN2<V> {
         // Print the total number of collisions
         System.out.println("Collisions: " + countCollisions);
         System.out.println("Duplicates: " + duplicateCount);
+        System.out.println("Total Elements: " + getCount());
     }
 
     public int getDuplicateCount() {
@@ -127,7 +128,6 @@ public class HashingN2<V> {
     public int getCollisionCount() {
         return countCollisions;
     }
-    
 
     public int getCount() {
         int temp = 0;

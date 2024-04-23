@@ -196,6 +196,7 @@ public class HashingN<V> {
         }
         System.out.println("Count: " + count);
         System.out.println("Entries: "+ review());
+        System.out.println("Inner Collisions: " + innerCollisions);
     }
 
     public int getDuplicateCount() {

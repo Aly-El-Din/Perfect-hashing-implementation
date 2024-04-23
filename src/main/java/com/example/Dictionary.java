@@ -6,4 +6,7 @@ public interface Dictionary {
     public String delete(String word);
     public void batchInsert(String filePath);
     public void batchDelete(String filePath);
+    public int getNumberofCuurrentElementsinTable();
+
+    public int getCollisions();
 }
