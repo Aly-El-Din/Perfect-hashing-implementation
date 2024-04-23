@@ -3,6 +3,8 @@ package com.example;
 import static org.junit.Assert.*;
 import static org.junit.Assume.assumeNoException;
 
+import com.example.HashTableADT.*;
+
 import java.util.Random;
 
 import org.junit.Test;
@@ -26,7 +28,7 @@ public class HashingNTest
         } catch (Exception e) {
             assumeNoException(e);
         }
-        assertEquals(testSize, h.count);
+        assertEquals(testSize, h.getCount());
     }
 
 
@@ -41,7 +43,7 @@ public class HashingNTest
                 keys[i] = new Generator().generateString();
                 h.insert(keys[i]);
             }
-            System.out.println(h.count);
+            //System.out.println(h.count);
 
             for (String key : keys) {
 
@@ -73,7 +75,7 @@ public class HashingNTest
                 keys[i] = new Generator().generateString();
                 h.insert(keys[i]);
             }
-            System.out.println(h.count);
+           // System.out.println(h.count);
 
             Random random = new Random();
             // delete 500 elements
@@ -100,7 +102,7 @@ public class HashingNTest
         } catch (Exception e) {
             assumeNoException(e);
         }
-        assertEquals(testSize, h.count);
+        assertEquals(testSize, h.getCount());
     }
 
 
@@ -115,7 +117,7 @@ public class HashingNTest
                 keys[i] = new Generator().generateLong();
                 h.insert(keys[i]);
             }
-            System.out.println(h.count);
+            System.out.println(h.getCount());
 
             for (Long key : keys) {
 
@@ -139,7 +141,7 @@ public class HashingNTest
                 keys[i] = new Generator().generateLong();
                 h.insert(keys[i]);
             }
-            System.out.println(h.count);
+            System.out.println(h.getCount());
 
 
             // delete 500 elements

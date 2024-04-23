@@ -1,5 +1,8 @@
 package com.example;
 
+import com.example.Dictionary.*;
+
+
 import java.util.Objects;
 import java.util.Scanner;
 

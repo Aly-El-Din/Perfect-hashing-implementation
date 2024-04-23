@@ -5,6 +5,8 @@ import static org.junit.Assume.assumeNoException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.example.HashTableADT.*;
+
 import org.junit.Test;
 
 public class HashingN2Test {
@@ -40,7 +42,7 @@ public class HashingN2Test {
                 keys[i] = new Generator().generateString();
                 h.insert(keys[i]);
             }
-            System.out.println(h.count);
+            //System.out.println(h.count);
 
             for (String key : keys) {
 
@@ -72,7 +74,7 @@ public class HashingN2Test {
                 keys[i] = new Generator().generateString();
                 h.insert(keys[i]);
             }
-            System.out.println(h.count);
+            System.out.println(h.getCount());
 
             for (String key : keys) {
 
@@ -122,7 +124,7 @@ public class HashingN2Test {
                 keys.add(key);
                 h.insert(key);
             }
-            System.out.println(h.count);
+            System.out.println(h.getCount());
 
             for (int key : keys) {
 
@@ -153,7 +155,7 @@ public class HashingN2Test {
                 keys.add(key);
                 h.insert(key);
             }
-            System.out.println(h.count);
+            System.out.println(h.getCount());
 
             for (int key : keys) {
 

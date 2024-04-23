@@ -1,4 +1,8 @@
-package com.example;
+package com.example.HashTableADT;
+
+import com.example.HashingAlgorithm.*;
+
+
 
 public class HashingN<V> {
 
@@ -209,6 +213,10 @@ public class HashingN<V> {
         int primaryIndex = h1.computeIndex(digest);
         int secondaryIndex = h2[primaryIndex].computeIndex(hash(var, N[primaryIndex]));
         return table[primaryIndex][secondaryIndex] == (null);
+    }
+
+    public int getCount() {
+        return count;
     }
 
 

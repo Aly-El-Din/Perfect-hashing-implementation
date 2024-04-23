@@ -3,6 +3,7 @@ package com.example;
 import static org.junit.Assert.*;
 import static org.junit.Assume.assumeNoException;
 
+import com.example.Dictionary.DictionaryNSpace;
 import org.junit.Test;
 
 import java.util.ArrayList;

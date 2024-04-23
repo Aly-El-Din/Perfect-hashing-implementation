@@ -1,5 +1,4 @@
-package com.example;
-
+package com.example.HashingAlgorithm;
 import java.util.Random;
 
 public class UniversalHashing2 {

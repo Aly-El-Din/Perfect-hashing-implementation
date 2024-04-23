@@ -1,19 +1,21 @@
-package com.example;
+package com.example.Dictionary;
+
+import com.example.HashTableADT.*;
+
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class DictionaryNSpace implements Dictionary{
-    private HashingN<String> hash;
+public class DictionaryN2Space implements Dictionary{
+    private HashingN2<String> hash;
 
-
-
-    public DictionaryNSpace(int sizeOfPrimaryTable) {
-        this.hash = new HashingN<>(sizeOfPrimaryTable);
+    public DictionaryN2Space(int sizeOfTable) {
+        this.hash = new HashingN2<>(true,Long.MAX_VALUE,sizeOfTable);
     }
-    public ArrayList<String> readWordsFromFile(String filePath) {
+    private ArrayList<String> readWordsFromFile(String filePath) {
         ArrayList<String> wordsList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -32,6 +34,7 @@ public class DictionaryNSpace implements Dictionary{
 
     public void batchInsert(String filePath) {
         ArrayList<String> words = readWordsFromFile(filePath);
+        hash.rehash(words.size()+hash.getExpectedNumberOfElements());
         int totalInsertedElements = 0;
         int totalDuplicateElements = 0;
         for (String word : words) {
@@ -74,22 +77,19 @@ public class DictionaryNSpace implements Dictionary{
         return hash.delete(word);
     }
 
+    public void display() {
+        hash.display();
+    }
+    
+    public int getCount(){
+        return hash.getCount();
+    }
+
     public int getNumberofCuurrentElementsinTable() {
-        return hash.count;
+        return hash.getCount();
     }
 
     public int getCollisions() {
-        return hash.getInnerCollisions();
+        return hash.getCollisionCount();
     }
-
-    public boolean validateDeletion(String word) {
-        return hash.validateDeletion(word);
-    }
-
-    public void display() {
-        hash.print();
-    }
-
-
-
 }

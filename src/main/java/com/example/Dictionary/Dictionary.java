@@ -1,4 +1,4 @@
-package com.example;
+package com.example.Dictionary;
 
 public interface Dictionary {
     public String insert(String word);

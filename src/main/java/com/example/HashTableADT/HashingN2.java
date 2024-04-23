@@ -1,4 +1,7 @@
-package com.example;
+package com.example.HashTableADT;
+
+import com.example.HashingAlgorithm.*;
+
 
 public class HashingN2<V> {
     private Boolean isString;
