@@ -7,6 +7,5 @@ public interface Dictionary {
     public void batchInsert(String filePath);
     public void batchDelete(String filePath);
     public int getNumberofCuurrentElementsinTable();
-
     public int getCollisions();
 }

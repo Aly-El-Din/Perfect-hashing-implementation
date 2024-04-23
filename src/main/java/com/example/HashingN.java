@@ -135,6 +135,7 @@ public class HashingN<V> {
             table[primaryIndex][secondaryIndex] = null;
             counts[primaryIndex]--;
         }
+        count--;
         if (search(var)) {
             throw new RuntimeException("Deletion failed");
         }
