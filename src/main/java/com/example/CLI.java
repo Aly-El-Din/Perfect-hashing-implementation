@@ -7,7 +7,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class CLI {
-    public static String welcome(){
+    @SuppressWarnings("resource")
+    public static String welcome() {
         System.out.println("Welcome to Your Dictionary CLI!");
         System.out.println("--------------------------------");
         System.out.println("Please choose one of the following options:");
@@ -23,10 +24,10 @@ public class CLI {
             System.out.println("Please choose one of the following options:");
             System.out.println("1. Dictionary Of O(N) Space.");
             System.out.println("2. Dictionary Of O(N²) Space.");
-        }
-        while (true);
-        }
+        } while (true);
+    }
 
+        @SuppressWarnings("resource")
     public static void menu(Dictionary dictionary) {
 
         do {

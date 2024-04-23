@@ -4,19 +4,18 @@ import com.example.HashTableADT.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class SamplingN2 {
 
     // samlping data about space and time complexity of HashingN2
     @Test
     public void complexityAnalysisTest() {
-        int space = 0; // space complexity
+        //int space = 0; // space complexity
         long totalInsertionTime = 0; // total time taken to insert entries
         long totalSearchTime = 0; // total time taken to search entries
         int sampleSize = 5; // number of samples to be taken of a given input size
         int inputSize = 20000; // random input size (size of entries to be inserted)
-        int c = new Random().nextInt(9) + 1; // random constant c assumed to be between 1 - 9
+        //int c = new Random().nextInt(9) + 1; // random constant c assumed to be between 1 - 9
         int maxInputSize = 20001; // maximum input size
         int[] spaceComplexities = new int[sampleSize];
         long[] averageTimesPerInsertion = new long[sampleSize];

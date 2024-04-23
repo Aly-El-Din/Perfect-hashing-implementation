@@ -4,7 +4,6 @@ import com.example.HashTableADT.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class SamplingN {
 
@@ -16,7 +15,7 @@ public class SamplingN {
         long totalSearchTime = 0; // total time taken to search entries
         int sampleSize = 5; // number of samples to be taken of a given input size
         int inputSize = 10; // random input size (size of entries to be inserted)
-        int c = new Random().nextInt(9) + 1; // random constant c assumed to be between 1 - 9
+       // int c = new Random().nextInt(9) + 1; // random constant c assumed to be between 1 - 9
         int maxInputSize = 101; // maximum input size
         int[] spaceComplexities = new int[sampleSize];
         long[] averageTimesPerInsertion = new long[sampleSize];

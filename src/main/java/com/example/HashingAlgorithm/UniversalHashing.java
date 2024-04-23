@@ -6,7 +6,6 @@ public class UniversalHashing<V> {
     private  int bitsOfMaxNumber;
     private final int bits_indices;
     private int[][] h;
-    private Class<V> type;
 
     public UniversalHashing(boolean isString, long maxNumber, int hashTableSize) {
         if (isString) {
