@@ -7,21 +7,22 @@ public class HashingN2<V> {
     private long maxNumber;
     private int hashTableSize;
     private int primarySize;
-    private UniversalHashing newHash;
+    private UniversalHashing<V> newHash;
     int count = 0;
     private int duplicateCount = 0;
+    Class<V> type;
 
 
 
     private int expectedNumberOfElements = 0;
 
-    public HashingN2(boolean isString,long maxNumber, int hashTableSize) {
-        this.isString = isString;
+    public HashingN2(Class<V> type,long maxNumber, int hashTableSize) {
+        this.type = type;
         this.maxNumber = maxNumber; // Maximum number of elements
         this.expectedNumberOfElements = hashTableSize; // Expected number of elements
         this.primarySize = hashTableSize; // Size of the primary table
         this.hashTableSize = hashTableSize * hashTableSize; // size of the hash table power of 2
-        this.newHash = new UniversalHashing(isString,this.maxNumber, this.hashTableSize);
+        this.newHash = new UniversalHashing(type, maxNumber, hashTableSize); // Create a new hashing instance
         hashTable = (V[]) new Object[this.hashTableSize];
     }
 
@@ -30,7 +31,7 @@ public class HashingN2<V> {
         V[] oldHashTable = hashTable.clone(); // Create a clone of the old hash table
         this.expectedNumberOfElements = newSize; // Update the expected number of elements
         this.hashTableSize = newSize * newSize; // Update the hash table size
-        this.newHash = new UniversalHashing(isString ,this.maxNumber, this.hashTableSize); // Create a new hashing instance
+        this.newHash = new UniversalHashing(type,this.maxNumber, this.hashTableSize); // Create a new hashing instance
         hashTable = (V[]) new Object[this.hashTableSize]; // Initialize a new hash table array
         // Iterate over the entries in the old hash table
         for (V value : oldHashTable) {
@@ -43,7 +44,7 @@ public class HashingN2<V> {
 
     public String insert(V value) {
         int index;
-        if (this.isString){
+        if (value instanceof String){
             index = this.newHash.computeIndexString(value.toString());    
         }
         else{
@@ -79,7 +80,7 @@ public class HashingN2<V> {
 
     public boolean search(V value) {
         int index;
-        if (this.isString){
+        if (value instanceof String){
             index = this.newHash.computeIndexString(value.toString());    
         }
         else{
@@ -93,7 +94,7 @@ public class HashingN2<V> {
             return "Element not found";
         }
         int index;
-        if (this.isString){
+        if (value instanceof String){
             index = this.newHash.computeIndexString(value.toString());    
         }
         else{

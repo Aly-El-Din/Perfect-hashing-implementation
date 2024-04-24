@@ -8,8 +8,9 @@ public class UniversalHashing<V> {
     private int[][] h;
     private Class<V> type;
 
-    public UniversalHashing(boolean isString, long maxNumber, int hashTableSize) {
-        if (isString) {
+    public UniversalHashing(Class<V> type, long maxNumber, int hashTableSize){
+
+        if (String.class.equals(type)) {
             this.bitsOfMaxNumber = 80; // 80 bits for a string of 8 bytes * 10 characters
         } else {
             this.bitsOfMaxNumber = (int) (Math.log(maxNumber) / Math.log(2)) + 1;

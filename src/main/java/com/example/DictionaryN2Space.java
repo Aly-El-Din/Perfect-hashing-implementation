@@ -9,7 +9,7 @@ public class DictionaryN2Space implements Dictionary{
     private HashingN2<String> hash;
 
     public DictionaryN2Space(int sizeOfTable) {
-        this.hash = new HashingN2<>(true,Long.MAX_VALUE,sizeOfTable);
+        this.hash = new HashingN2<>(String.class,Long.MAX_VALUE,sizeOfTable);
     }
     private ArrayList<String> readWordsFromFile(String filePath) {
         ArrayList<String> wordsList = new ArrayList<>();

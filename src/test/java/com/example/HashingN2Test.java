@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class HashingN2Test {
 
-    HashingN2<String> h = new HashingN2<>(true,Integer.MAX_VALUE ,6000);
+    HashingN2<String> h = new HashingN2<>(String.class,Integer.MAX_VALUE ,6000);
     private int testSize = 6000;
 
     @Test
@@ -101,7 +101,7 @@ public class HashingN2Test {
 
     @Test
     public void insertTestInt() {
-        HashingN2<Integer> h = new HashingN2<>(false,Integer.MAX_VALUE ,6000);
+        HashingN2<Integer> h = new HashingN2<>(Integer.class,Integer.MAX_VALUE ,6000);
         
         try {
             for (int i = 0; i < testSize; i++)
@@ -114,7 +114,7 @@ public class HashingN2Test {
 
     @Test
     public void searchTestInt() {
-        HashingN2<Integer> h = new HashingN2<>(false,Integer.MAX_VALUE ,6000);
+        HashingN2<Integer> h = new HashingN2<>(Integer.class,Integer.MAX_VALUE ,6000);
         ArrayList<Integer> keys = new ArrayList<>();
         try {
             for (int i = 0; i < testSize; i++) {
@@ -145,7 +145,7 @@ public class HashingN2Test {
 
     @Test
     public void deleteTestInt() {
-        HashingN2<Integer> h = new HashingN2<>(false,Integer.MAX_VALUE ,6000);
+        HashingN2<Integer> h = new HashingN2<>(Integer.class,Integer.MAX_VALUE ,6000);
         ArrayList<Integer> keys = new ArrayList<>();
         try {
             for (int i = 0; i < testSize; i++) {

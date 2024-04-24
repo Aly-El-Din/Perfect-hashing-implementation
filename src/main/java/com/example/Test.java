@@ -53,18 +53,28 @@ public class Test {
 //        hash.insert("Hassan");
 //        hash.insert("jemssjsdh");
 //        hash.display();
-        DictionaryN2Space hash = new DictionaryN2Space(2);
-        System.out.println(hash.insert("Ebrahim"));
-        System.out.println(hash.insert("Amir"));
-        System.out.println(hash.insert("Hassan"));
-        System.out.println(hash.insert("jemssjsdh"));
+        // DictionaryN2Space hash = new DictionaryN2Space(2);
+        // System.out.println(hash.insert("Ebrahim"));
+        // System.out.println(hash.insert("Amir"));
+        // System.out.println(hash.insert("Hassan"));
+        // System.out.println(hash.insert("jemssjsdh"));
+        // hash.display();
+        // DictionaryNSpace hash2 = new DictionaryNSpace(2);
+        // System.out.println(hash2.insert("Ebrahim"));
+        // System.out.println(hash2.insert("Amir"));
+        // System.out.println(hash2.insert("Hassan"));
+        // System.out.println(hash2.insert("jemssjsdh"));
+        // hash2.display();
+
+        HashingN2<Integer> hash = new HashingN2<>(Integer.class,Long.MAX_VALUE,2);
+        System.out.println(hash.insert(5));
+        System.out.println(hash.insert(7));
+        System.out.println(hash.insert(1));
+        System.out.println(hash.insert(5));
+        
         hash.display();
-        DictionaryNSpace hash2 = new DictionaryNSpace(2);
-        System.out.println(hash2.insert("Ebrahim"));
-        System.out.println(hash2.insert("Amir"));
-        System.out.println(hash2.insert("Hassan"));
-        System.out.println(hash2.insert("jemssjsdh"));
-        hash2.display();
+
+
 
 
 
