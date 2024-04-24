@@ -6,7 +6,7 @@ public class UniversalHashing<V> {
     private  int bitsOfMaxNumber;
     private final int bits_indices;
     private int[][] h;
-    private Class<V> type;
+
 
     public UniversalHashing(Class<V> type, long maxNumber, int hashTableSize){
 
