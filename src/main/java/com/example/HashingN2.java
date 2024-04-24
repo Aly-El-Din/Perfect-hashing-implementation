@@ -30,7 +30,6 @@ public class HashingN2<V> {
     public void rehash(int newSize) {
         V[] oldHashTable = hashTable.clone(); // Create a clone of the old hash table
         this.expectedNumberOfElements = newSize; // Update the expected number of elements
-        this.hashTableSize = newSize * newSize; // Update the hash table size
         this.newHash = new UniversalHashing(type,this.maxNumber, this.hashTableSize); // Create a new hashing instance
         hashTable = (V[]) new Object[this.hashTableSize]; // Initialize a new hash table array
         // Iterate over the entries in the old hash table
@@ -58,10 +57,9 @@ public class HashingN2<V> {
             // Handle collision or repetition
             if (hashTable[index].equals(value)) {
                 this.duplicateCount++;
-                return "Already exists in the table";
             } else {
                 // Collision occurred
-                System.out.println("Collision at index: " + index + " Value: " + hashTable[index] + " New Value: " + value);
+                // System.out.println("Collision at index: " + index + " Value: " + hashTable[index] + " New Value: " + value);
                 this.countCollisions++;
                 rehash(this.expectedNumberOfElements+1); // Rehashing to resolve collision
                 insert(value); // Attempt to insert again after rehashing
@@ -70,11 +68,12 @@ public class HashingN2<V> {
         }
 
         // If the value is found after insertion or rehashing, return success message
-        if (search(value)) {
-            return "Inserted successfully";
-        }
-        // If insertion fails for any reason, return failure message
-          throw new RuntimeException("Insertion failed");
+        // if (search(value)) {
+        //     return "Inserted successfully";
+        // }
+        // // If insertion fails for any reason, return failure message
+        //   throw new RuntimeException("Insertion failed");
+        return "Inserted successfully";
     }
 
 

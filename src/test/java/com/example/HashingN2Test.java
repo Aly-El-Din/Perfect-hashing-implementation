@@ -24,7 +24,7 @@ public class HashingN2Test {
             }
             
             
-        System.out.println("Count: " + h.getCollisionCount());
+        System.out.println("Count Collisions: " + h.getCollisionCount());
         System.out.println("Duplicate Count: " + h.getDuplicateCount());
         } catch (Exception e) {
             assumeNoException(e);
